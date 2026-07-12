@@ -17,6 +17,8 @@ public class Paciente : EntidadeBase
     public string CartaoSus { get; set; }
     public string Cpf { get; set; }
 
+    public Paciente() { }
+
     public Paciente(string nome, string telefone, string cartaoSus, string cpf)
     {
         Nome = nome;

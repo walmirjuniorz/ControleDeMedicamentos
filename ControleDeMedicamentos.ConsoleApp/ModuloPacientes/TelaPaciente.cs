@@ -5,7 +5,7 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 
 public class TelaPaciente : TelaBase<Paciente>, ITelaOpcoes, ITelaCrud
 {
-    public TelaPaciente(string nomeEntidade, RepositorioBaseEmArquivo<Paciente> repositorio) : base(nomeEntidade, repositorio)
+    public TelaPaciente(RepositorioPacienteEmArquivo repositorioPaciente) : base("Paciente", repositorioPaciente)
     {
     }
 
@@ -48,7 +48,7 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaOpcoes, ITelaCrud
         Console.Write("Digite o telefone do paciente: ");
         string telefone = Console.ReadLine() ?? string.Empty;
 
-        Console.Write("Digite o número do cartão do SUS do Paciente: ");
+        Console.Write("Digite o número do cartão do SUS do paciente: ");
         string cartaoSus = Console.ReadLine() ?? string.Empty;
 
         Console.Write("Digite o CPF do paciente: ");
