@@ -1,5 +1,4 @@
 using ControleDeMedicamentos.ConsoleApp.Compartilhado.Arquivos;
-
 namespace ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
 
 public class RepositorioPacienteEmArquivo : RepositorioBaseEmArquivo<Paciente>
