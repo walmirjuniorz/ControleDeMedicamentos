@@ -11,16 +11,19 @@ namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionario;
 */
 public class Funcionario : EntidadeBase
 {
+    public string Nome { get; set; }
+    public string Telefone { get; set; }
+    public string Cpf { get; set; }
+
+    public Funcionario()
+    {
+    }
     public Funcionario(string nome, string telefone, string cpf)
     {
         Nome = nome;
         Telefone = telefone;
         Cpf = cpf;
     }
-    public string Nome { get; set; }
-    public string Telefone { get; set; }
-    public string Cpf { get; set; }
-
     public override List<string> Validar()
     {
         List<string> erros = new List<string>();

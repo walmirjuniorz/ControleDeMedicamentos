@@ -1,16 +1,16 @@
 using System;
 using ControleDeMedicamentos.ConsoleApp.Compartilhado.Arquivos;
-using ControleDeMedicamentos.ConsoleApp.ModuloPacientes;
+using ControleDeMedicamentos.ConsoleApp.ModuloFuncionario;
 
 namespace ControleDeMedicamentos.ConsoleApp.ModuloFuncionarios;
 
-public class RepositorioFuncionarioEmArquivo : RepositorioBaseEmArquivo<Paciente>
+public class RepositorioFuncionarioEmArquivo : RepositorioBaseEmArquivo<Funcionario>
 {
     public RepositorioFuncionarioEmArquivo(ContextoJson contexto) : base(contexto)
     {
     }
 
-    protected override List<Paciente> ObterRegistros()
+    protected override List<Funcionario> ObterRegistros()
     {
         throw new NotImplementedException();
     }
