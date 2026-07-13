@@ -17,6 +17,8 @@ public class ContextoJson
     public List<Paciente> Pacientes { get; set; } = [];
     public List<Funcionario> Funcionarios { get; set; } = [];
     public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = [];
+    public List<RequisicaoSaida> RequisicoesSaida { get; set; } = [];
+
 
     public ContextoJson()
     {
@@ -62,6 +64,6 @@ public class ContextoJson
         Pacientes = contextoSalvo.Pacientes;
         Funcionarios = contextoSalvo.Funcionarios;
         RequisicoesEntrada = contextoSalvo.RequisicoesEntrada;
-
+        RequisicoesSaida = contextoSalvo.RequisicoesSaida;
     }
 }
