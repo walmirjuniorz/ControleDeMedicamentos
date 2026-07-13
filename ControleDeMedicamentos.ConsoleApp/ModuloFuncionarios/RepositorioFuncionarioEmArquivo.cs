@@ -12,6 +12,6 @@ public class RepositorioFuncionarioEmArquivo : RepositorioBaseEmArquivo<Funciona
 
     protected override List<Funcionario> ObterRegistros()
     {
-        throw new NotImplementedException();
+        return contexto.Funcionarios;
     }
 }
