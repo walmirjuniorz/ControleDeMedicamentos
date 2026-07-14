@@ -8,14 +8,16 @@ public class RequisicaoSaida : EntidadeBase
 {
     public Paciente Paciente { get; set; }
     public Medicamento Medicamento { get; set; }
+    public int Quantidade { get; set; }
     public DateTime Data { get; set; } = DateTime.Now;
 
     public RequisicaoSaida() { }
 
-    public RequisicaoSaida(Paciente paciente, Medicamento medicamento, DateTime data)
+    public RequisicaoSaida(Paciente paciente, Medicamento medicamento, int quantidade)
     {
         Paciente = paciente;
         Medicamento = medicamento;
+        Quantidade = quantidade;
     }
     public override void Atualizar(EntidadeBase entidadeAtualizada)
     {
@@ -23,6 +25,7 @@ public class RequisicaoSaida : EntidadeBase
 
         Paciente = requisicaoSaidaAtualizada.Paciente;
         Medicamento = requisicaoSaidaAtualizada.Medicamento;
+        Quantidade = requisicaoSaidaAtualizada.Quantidade;
     }
     public override List<string> Validar()
     {
@@ -33,6 +36,9 @@ public class RequisicaoSaida : EntidadeBase
 
         if (Medicamento == null)
             erros.Add("O campo \"Medicamento\" deve ser preenchido.");
+
+        if (Quantidade <= 0)
+            erros.Add("A \"Quantidade\" deve ser maior que zero.");
 
         return erros;
     }
