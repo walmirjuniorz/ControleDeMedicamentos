@@ -30,8 +30,8 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
         }
 
         Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -20} | {3, -15}",
-            "Id", "Paciente", "Medicamento", "Data"
+            "{0, -7} | {1, -20} | {2, -20} | {3, -10} |{4, -15}",
+            "Id", "Paciente", "Medicamento", "Qtd", "Data"
         );
 
         List<RequisicaoSaida> registros = repositorio.SelecionarTodos();
@@ -39,8 +39,8 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
         foreach (RequisicaoSaida r in registros)
         {
             Console.WriteLine(
-                "{0, -7} | {1, -20} | {2, -20} | {3, -15}",
-                r.Id, r.Paciente.Nome, r.Medicamento.Nome, r.Data.ToShortDateString()
+            "{0, -7} | {1, -20} | {2, -20} | {3, -10} |{4, -15}",
+                r.Id, r.Paciente.Nome, r.Medicamento.Nome, r.Quantidade, r.Data.ToShortDateString()
             );
         }
 
