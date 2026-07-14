@@ -19,7 +19,7 @@ public class TelaRequisicaoEntrada : TelaBase<RequisicaoEntrada>, ITelaOpcoes, I
     {
         if (deveExibirCabecalho)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Visualização de Requisições de Entrada");
             Console.WriteLine("---------------------------------");

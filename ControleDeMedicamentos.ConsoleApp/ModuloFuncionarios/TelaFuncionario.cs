@@ -12,7 +12,7 @@ public class TelaFuncionario : TelaBase<Funcionario>, ITelaOpcoes, ITelaCrud
     {
         if (deveExibirCabecalho)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Visualização de Fornecedores");
             Console.WriteLine("---------------------------------");

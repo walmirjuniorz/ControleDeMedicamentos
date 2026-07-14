@@ -19,7 +19,7 @@ public class TelaMedicamento : TelaBase<Medicamento>, ITelaOpcoes, ITelaCrud
     {
         if (deveExibirCabecalho)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Visualização de Medicamentos");
             Console.WriteLine("---------------------------------");
