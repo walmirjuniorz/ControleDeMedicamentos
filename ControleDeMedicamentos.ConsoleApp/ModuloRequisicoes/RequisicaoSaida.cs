@@ -13,11 +13,14 @@ public class RequisicaoSaida : EntidadeBase
 
     public RequisicaoSaida() { }
 
-    public RequisicaoSaida(Paciente paciente, Medicamento medicamento, int quantidade)
+    public RequisicaoSaida(Paciente paciente, Medicamento medicamento, int quantidade) : this()
     {
         Paciente = paciente;
         Medicamento = medicamento;
         Quantidade = quantidade;
+
+        medicamento.RegistrarRequisicaoSaida(this);
+
     }
     public override void Atualizar(EntidadeBase entidadeAtualizada)
     {

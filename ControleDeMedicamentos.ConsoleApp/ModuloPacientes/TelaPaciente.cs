@@ -13,7 +13,7 @@ public class TelaPaciente : TelaBase<Paciente>, ITelaOpcoes, ITelaCrud
     {
         if (deveExibirCabecalho)
         {
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Visualização de Pacientes");
             Console.WriteLine("---------------------------------");

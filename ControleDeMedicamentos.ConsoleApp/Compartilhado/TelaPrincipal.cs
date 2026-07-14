@@ -40,7 +40,7 @@ public class TelaPrincipal
 
     public ITelaOpcoes? ObterOpcaoMenuPrincipal()
     {
-        //Console.Clear();
+        Console.Clear();
         Console.WriteLine("---------------------------------");
         Console.WriteLine("Controle de Medicamentos");
         Console.WriteLine("---------------------------------");

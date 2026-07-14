@@ -11,10 +11,10 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
 
     public TelaRequisicaoSaida(
-        RepositorioRequisicaoSaidaEmArquivo repositorio,
+        RepositorioRequisicaoSaidaEmArquivo repositorioRequisicao,
         RepositorioPacienteEmArquivo repositorioPaciente,
         RepositorioMedicamentoEmArquivo repositorioMedicamento)
-        : base("Requisiçao de Saída", repositorio)
+        : base("Requisiçao de Saída", repositorioRequisicao)
     {
         this.repositorioPaciente = repositorioPaciente;
         this.repositorioMedicamento = repositorioMedicamento;
@@ -23,7 +23,7 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
     {
         if (deveExibirCabecalho)
         {
-            //Console.Clear();
+            Console.Clear();
             Console.WriteLine("---------------------------------");
             Console.WriteLine("Visualização de Requisições de Saída");
             Console.WriteLine("---------------------------------");
@@ -76,7 +76,6 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
 
         return new RequisicaoSaida(paciente, medicamento, quantidade);
     }
-
     private void VisualizarPacientes()
     {
         Console.WriteLine(
@@ -97,8 +96,8 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
     private void VisualizarMedicamentos()
     {
         Console.WriteLine(
-            "{0, -7} | {1, -20} | {2, -20} | {3, -20}",
-            "Id", "Nome", "Fornecedor", "Descrição"
+            "{0, -7} | {1, -20} | {2, -20} | {3, -20} | {4, -12}",
+            "Id", "Nome", "Fornecedor", "Descrição", "Estoque"
         );
 
         List<Medicamento> registros = repositorioMedicamento.SelecionarTodos();
@@ -106,9 +105,13 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
         foreach (Medicamento m in registros)
         {
             Console.WriteLine(
-                "{0, -7} | {1, -20} | {2, -20} | {3, -20}",
-                m.Id, m.Nome, m.Fornecedor.Nome, m.Descricao
+                "{0, -7} | {1, -20} | {2, -20} | {3, -20} | {4, -12}",
+                m.Id, m.Nome, m.Fornecedor.Nome, m.Descricao, m.QuantidadeEmEstoque
             );
         }
+    }
+    protected override bool ExistemDependenciasAtivasDoRegistro(int idRegistro)
+    {
+        return base.ExistemDependenciasAtivasDoRegistro(idRegistro);
     }
 }
