@@ -10,7 +10,7 @@ Este projeto é um sistema de controle de medicamentos desenvolvido em C#. O obj
 
 O sistema foi desenvolvido em aplicação Console e utiliza arquivos JSON para salvar os dados, permitindo que as informações sejam mantidas mesmo após fechar o programa.
 
-### Funcionalidades
+## Funcionalidades
 
 O sistema possui as seguintes funcionalidades:
 
