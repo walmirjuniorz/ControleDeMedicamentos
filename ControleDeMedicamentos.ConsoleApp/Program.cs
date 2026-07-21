@@ -6,7 +6,14 @@
 // Objeto de configuraçao do servidor
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+// Habilita o MVC = Model - View - Controller
+builder.Services.AddControllersWithViews();
+
 WebApplication app = builder.Build();
+
+// Middlewares - funçoes que executam a cada execuçao e resposta
+app.UseRouting();
+app.MapDefaultControllerRoute();
 
 // Executa o servidor
 app.Run();
