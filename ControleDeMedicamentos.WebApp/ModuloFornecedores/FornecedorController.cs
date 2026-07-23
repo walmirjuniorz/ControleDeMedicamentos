@@ -21,4 +21,18 @@ public sealed class FornecedorController : Controller
 
         return View(fornecedores);
     }
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Cadastrar(string nome, string telefone, string cnpj)
+    {
+        Fornecedor fornecedor = new Fornecedor(nome, telefone, cnpj);
+
+        repositorio.Cadastrar(fornecedor);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
