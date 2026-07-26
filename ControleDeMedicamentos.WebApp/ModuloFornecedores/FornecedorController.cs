@@ -35,4 +35,49 @@ public sealed class FornecedorController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    [HttpGet]
+    public ActionResult Editar(int id)
+    {
+        Fornecedor? fornecedor = repositorio.SelecionarPorId(id);
+
+        if (fornecedor == null)
+            return NotFound();
+
+        return View(fornecedor);
+    }
+    [HttpPost]
+    public ActionResult Editar(int id, string nome, string telefone, string cnpj)
+    {
+        Fornecedor fornecedorAtualizado = new Fornecedor(nome, telefone, cnpj);
+
+        bool conseguiuEditar = repositorio.Editar(id, fornecedorAtualizado);
+
+        if (!conseguiuEditar)
+            return NotFound();
+
+        return RedirectToAction(nameof(Listar));
+    }
+
+    [HttpGet]
+    public ActionResult Excluir(int id)
+    {
+        Fornecedor? fornecedor = repositorio.SelecionarPorId(id);
+
+        if (fornecedor == null)
+            return NotFound();
+
+        return View(fornecedor);
+    }
+    [HttpPost]
+    [ActionName("Excluir")]
+    public ActionResult ConfirmarExclusao(int id)
+    {
+        bool conseguiuExcluir = repositorio.Excluir(id);
+
+        if (!conseguiuExcluir)
+            return NotFound();
+
+        return RedirectToAction(nameof(Listar));
+    }
+
 }
