@@ -1,3 +1,5 @@
+@using ControleDeMedicamentos.WebApp.ModuloFornecedores
+
 <h2>Controle de Medicamentos</h2>
 
 <hr />
@@ -27,9 +29,10 @@
         <label for="fornecedorId">Fornecedor</label>
         <br />
         <select id="fornecedorId" name="fornecedorId">
-            <option value="1">Opção 1</option>
-            <option value="2">Opção 2</option>
-            <option value="3">Opção 3</option>
+            @foreach (Fornecedor f in ViewBag.Fornecedores)
+            {
+                <option value="@f.Id">@f.Nome</option>
+            }
         </select>
     </div>
 

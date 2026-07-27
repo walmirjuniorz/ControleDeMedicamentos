@@ -16,7 +16,6 @@ public sealed class MedicamentoController : Controller
 
         repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
         repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
-
     }
     [HttpGet]
     public ActionResult Listar()
@@ -28,7 +27,11 @@ public sealed class MedicamentoController : Controller
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        return View();
+        List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarTodos();
+
+        ViewBag.Fornecedores = fornecedores;
+
+        return View(fornecedores);
     }
     [HttpPost]
     public ActionResult Cadastrar(string nome, string descricao, int fornecedorId)
