@@ -1,0 +1,57 @@
+@using ControleDeMedicamentos.WebApp.ModuloFornecedores
+@using ControleDeMedicamentos.WebApp.ModuloMedicamentos
+
+@model Medicamento;
+
+<h2>Controle de Medicamentos</h2>
+
+<hr />
+<a href="/">Início</a> / @*Ancora ou link*@
+<a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
+<a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
+
+<hr />
+
+<h1>Edição de Medicamento</h1>
+
+<form action="/Medicamento/Editar/@Model.Id" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div>
+        <label for="nome">Nome</label>
+        <br />
+        <input id="nome" name="nome" type="text" value="@Model.Nome">
+    </div>
+
+    <div>
+        <label for="descricao">Descrição</label>
+        <br />
+        <textarea id="descricao" name="descricao">@Model.Descricao</textarea>
+    </div>
+
+    <div>
+        <label for="fornecedorId">Fornecedor</label>
+        <br />
+        <select id="fornecedorId" name="fornecedorId">
+            @foreach (Fornecedor f in ViewBag.Fornecedores)
+            {
+                if (f.Id == Model.Fornecedor.Id)
+                {
+                    <option value="@f.Id" selected>@f.Nome</option>
+                }
+                else
+                {
+                    <option value="@f.Id">@f.Nome</option>
+                }
+            }
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Confirmar</button>
+</form>
+
+<p>
+    <a href="/Medicamento/Listar">Voltar para a lista</a>
+</p>
