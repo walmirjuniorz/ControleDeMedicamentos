@@ -36,4 +36,25 @@ public sealed class FuncionarioController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    [HttpGet]
+    public ActionResult Excluir(int id)
+    {
+        Funcionario? funcionario = repositorio.SelecionarPorId(id);
+
+        if (funcionario == null)
+            return NotFound();
+
+        return View(funcionario);
+    }
+    [HttpPost]
+    [ActionName("Excluir")]
+    public ActionResult ConfirmarExclusao(int id)
+    {
+        bool ConfirmarExclusao = repositorio.Excluir(id);
+
+        if (!ConfirmarExclusao)
+            return NotFound();
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
