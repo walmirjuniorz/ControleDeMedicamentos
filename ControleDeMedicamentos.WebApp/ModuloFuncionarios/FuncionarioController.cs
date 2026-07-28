@@ -15,10 +15,25 @@ public sealed class FuncionarioController : Controller
 
         repositorio = new RepositorioFuncionarioEmArquivo(contextoJson);
     }
+    [HttpGet]
     public ActionResult Listar()
     {
         List<Funcionario> funcionarios = repositorio.SelecionarTodos();
 
         return View(funcionarios);
+    }
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Cadastrar(string nome, string telefone, string cpf)
+    {
+        Funcionario funcionario = new Funcionario(nome, telefone, cpf);
+
+        repositorio.Cadastrar(funcionario);
+
+        return View(funcionario);
     }
 }
