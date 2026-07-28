@@ -34,6 +34,6 @@ public sealed class FuncionarioController : Controller
 
         repositorio.Cadastrar(funcionario);
 
-        return View(funcionario);
+        return RedirectToAction(nameof(Listar));
     }
 }
