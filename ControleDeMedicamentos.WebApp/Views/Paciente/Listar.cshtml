@@ -1,6 +1,6 @@
-@using ControleDeMedicamentos.WebApp.ModuloFornecedores
+@using ControleDeMedicamentos.WebApp.ModuloPacientes
 
-@model List<Fornecedor>
+@model List<Paciente>;
 
 <h2>Controle de Medicamentos</h2>
 
@@ -11,10 +11,10 @@
 <a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
 <hr />
 
-<h1>Listagem de Fornecedores</h1>
+<h1>Listagem de Pacientes</h1>
 
 <p>
-    <a href="Cadastrar">Cadastrar Fornecedor</a>
+    <a href="Cadastrar">Cadastrar Paciente</a>
 </p>
 
 <table>
@@ -23,23 +23,25 @@
             <th>Id</th>
             <th>Nome</th>
             <th>Telefone</th>
-            <th>CNPJ</th>
+            <th>Cartão do SUS</th>
+            <th>CPF</th>
             <th>Açoes</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (Fornecedor f in Model)
+        @foreach (Paciente m in Model)
         {
             <tr>
-                <td>@f.Id</td>
-                <td>@f.Nome</td>
-                <td>@f.Telefone</td>
-                <td>@f.Cnpj</td>
+                <td>@m.Id</td>
+                <td>@m.Nome</td>
+                <td>@m.Telefone</td>
+                <td>@m.CartaoSus</td>
+                <td>@m.Cpf</td>
                 <td>
-                    <a href="Editar/@f.Id">Editar</a>
+                    <a href="Editar/@m.Id">Editar</a>
                     <span> | </span>
-                    <a href="Excluir/@f.Id">Excluir</a>
+                    <a href="Excluir/@m.Id">Excluir</a>
                 </td>
             </tr>
         }
