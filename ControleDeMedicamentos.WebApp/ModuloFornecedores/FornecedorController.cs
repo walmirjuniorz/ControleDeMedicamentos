@@ -57,7 +57,6 @@ public sealed class FornecedorController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
-
     [HttpGet]
     public ActionResult Excluir(int id)
     {
@@ -79,5 +78,4 @@ public sealed class FornecedorController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
-
 }

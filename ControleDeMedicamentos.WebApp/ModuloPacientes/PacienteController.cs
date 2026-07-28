@@ -21,4 +21,18 @@ public sealed class PacienteController : Controller
 
         return View(pacientes);
     }
+    [HttpGet]
+    public ActionResult Cadastrar()
+    {
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Cadastrar(string nome, string telefone, string cartaoSus, string cpf)
+    {
+        Paciente paciente = new Paciente(nome, telefone, cartaoSus, cpf);
+
+        repositorio.Cadastrar(paciente);
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
