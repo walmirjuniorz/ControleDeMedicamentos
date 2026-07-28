@@ -35,4 +35,26 @@ public sealed class PacienteController : Controller
 
         return RedirectToAction(nameof(Listar));
     }
+    [HttpGet]
+    public ActionResult Editar(int id)
+    {
+        Paciente? paciente = repositorio.SelecionarPorId(id);
+
+        if (paciente == null)
+            return NotFound();
+
+        return View(paciente);
+    }
+    [HttpPost]
+    public ActionResult Editar(int id, string nome, string telefone, string cartaoSus, string cpf)
+    {
+        Paciente pacienteAtualizado = new Paciente(nome, telefone, cartaoSus, cpf);
+
+        bool conseguiuEditar = repositorio.Editar(id, pacienteAtualizado);
+
+        if (!conseguiuEditar)
+            return NotFound();
+
+        return RedirectToAction(nameof(Listar));
+    }
 }
