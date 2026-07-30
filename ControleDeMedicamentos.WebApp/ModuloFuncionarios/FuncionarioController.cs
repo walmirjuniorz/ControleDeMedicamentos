@@ -20,7 +20,18 @@ public sealed class FuncionarioController : Controller
     {
         List<Funcionario> funcionarios = repositorio.SelecionarTodos();
 
-        return View(funcionarios);
+        List<ListarFuncionarioViewModel> viewModels = new List<ListarFuncionarioViewModel>();
+
+        foreach (Funcionario f in funcionarios)
+        {
+            ListarFuncionarioViewModel vm = new ListarFuncionarioViewModel(
+                f.Id,
+                f.Nome,
+                f.Telefone
+            );
+            viewModels.Add(vm);
+        }
+        return View(viewModels);
     }
     [HttpGet]
     public ActionResult Cadastrar()
