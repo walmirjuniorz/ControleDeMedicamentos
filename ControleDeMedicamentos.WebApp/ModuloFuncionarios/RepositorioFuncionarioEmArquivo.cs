@@ -1,6 +1,6 @@
 using System;
 using ControleDeMedicamentos.WebApp.Compartilhado.Arquivos;
-using ControleDeMedicamentos.WebApp.ModuloFuncionario;
+using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 
 namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 

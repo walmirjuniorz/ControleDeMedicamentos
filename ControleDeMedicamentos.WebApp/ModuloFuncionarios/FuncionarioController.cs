@@ -1,5 +1,5 @@
 using ControleDeMedicamentos.WebApp.Compartilhado.Arquivos;
-using ControleDeMedicamentos.WebApp.ModuloFuncionario;
+using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;

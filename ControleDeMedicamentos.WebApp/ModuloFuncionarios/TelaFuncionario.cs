@@ -1,5 +1,5 @@
 using ControleDeMedicamentos.WebApp.Compartilhado;
-using ControleDeMedicamentos.WebApp.ModuloFuncionario;
+using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 
 namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 

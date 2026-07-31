@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using ControleDeMedicamentos.WebApp.Compartilhado;
 
-namespace ControleDeMedicamentos.WebApp.ModuloFuncionario;
+namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 /*
     ● Campos obrigatórios:
             ○ Nome (3-100 caracteres)

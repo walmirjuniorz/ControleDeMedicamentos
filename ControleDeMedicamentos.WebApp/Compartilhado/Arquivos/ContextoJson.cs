@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ControleDeMedicamentos.WebApp.ModuloFornecedores;
-using ControleDeMedicamentos.WebApp.ModuloFuncionario;
+using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 using ControleDeMedicamentos.WebApp.ModuloMedicamentos;
 using ControleDeMedicamentos.WebApp.ModuloPacientes;
 using ControleDeMedicamentos.WebApp.ModuloRequisicoes;
