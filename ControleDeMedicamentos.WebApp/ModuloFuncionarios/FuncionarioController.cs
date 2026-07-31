@@ -24,11 +24,8 @@ public sealed class FuncionarioController : Controller
 
         foreach (Funcionario f in funcionarios)
         {
-            ListarFuncionarioViewModel vm = new ListarFuncionarioViewModel(
-                f.Id,
-                f.Nome,
-                f.Telefone
-            );
+            ListarFuncionarioViewModel vm = new ListarFuncionarioViewModel(f.Id, f.Nome, f.Telefone);
+
             viewModels.Add(vm);
         }
         return View(viewModels);
@@ -39,9 +36,9 @@ public sealed class FuncionarioController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Cadastrar(string nome, string telefone, string cpf)
+    public ActionResult Cadastrar(CadastrarFuncionarioViewModel cadastrarVM)
     {
-        Funcionario funcionario = new Funcionario(nome, telefone, cpf);
+        Funcionario funcionario = new Funcionario(cadastrarVM.Nome, cadastrarVM.Telefone, cadastrarVM.Cpf);
 
         repositorio.Cadastrar(funcionario);
 
