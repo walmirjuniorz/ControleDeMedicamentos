@@ -47,19 +47,31 @@ public sealed class FuncionarioController : Controller
     [HttpGet]
     public ActionResult Editar(int id)
     {
-        Funcionario? funcionario = repositorio.SelecionarPorId(id);
+        Funcionario? funcionarioSelecionado = repositorio.SelecionarPorId(id);
 
-        if (funcionario == null)
+        if (funcionarioSelecionado == null)
             return NotFound();
 
-        return View(funcionario);
-    }
-    [HttpPost]
-    public ActionResult Editar(int id, string nome, string telefone, string cpf)
-    {
-        Funcionario funcionarioAtualizado = new Funcionario(nome, telefone, cpf);
+        EditarFuncionarioViewModel viewModel = new EditarFuncionarioViewModel(
+            id,
+            funcionarioSelecionado.Nome,
+            funcionarioSelecionado.Telefone,
+            funcionarioSelecionado.Cpf
+        );
 
-        bool conseguiuEditar = repositorio.Editar(id, funcionarioAtualizado);
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public ActionResult Editar(EditarFuncionarioViewModel editarVm)
+    {
+        Funcionario funcionarioAtualizado = new Funcionario(
+            editarVm.Nome,
+            editarVm.Telefone,
+            editarVm.Cpf
+        );
+
+        bool conseguiuEditar = repositorio.Editar(editarVm.Id, funcionarioAtualizado);
 
         if (!conseguiuEditar)
             return NotFound();
@@ -69,20 +81,21 @@ public sealed class FuncionarioController : Controller
     [HttpGet]
     public ActionResult Excluir(int id)
     {
-        Funcionario? funcionario = repositorio.SelecionarPorId(id);
+        Funcionario? funcionarioSelecionado = repositorio.SelecionarPorId(id);
 
-        if (funcionario == null)
+        if (funcionarioSelecionado == null)
             return NotFound();
 
-        return View(funcionario);
+        ExcluirFuncionarioViewModel viewModel = new ExcluirFuncionarioViewModel(id, funcionarioSelecionado.Nome);
+
+        return View(viewModel);
     }
     [HttpPost]
-    [ActionName("Excluir")]
-    public ActionResult ConfirmarExclusao(int id)
+    public ActionResult Excluir(ExcluirFuncionarioViewModel excluirVM)
     {
-        bool ConfirmarExclusao = repositorio.Excluir(id);
+        bool ConseguiuExcluir = repositorio.Excluir(excluirVM.Id);
 
-        if (!ConfirmarExclusao)
+        if (!ConseguiuExcluir)
             return NotFound();
 
         return RedirectToAction(nameof(Listar));

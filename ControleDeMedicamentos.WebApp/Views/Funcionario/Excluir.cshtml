@@ -1,26 +1,31 @@
-@model Funcionario
+@model ExcluirFuncionarioViewModel
 
 <h2>Controle de Medicamentos</h2>
 
 <hr />
-<a href="/">Início</a> / @*Ancora ou link*@
-<a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
-<a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
-<a href="/Funcionario/Listar">Funcionários</a> / @*Ancora ou link*@
-<a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
+<a asp-controller="Home" asp-action="Index">Início</a> / @*Ancora ou link*@
+<a asp-controller="Fornecedor" asp-action="Listar">Fornecedores</a> / @*Ancora ou link*@
+<a asp-controller="Medicamento" asp-action="Listar">Medicamentos</a> / @*Ancora ou link*@
+<a asp-controller="Funcionario" asp-action="Listar">Funcionários</a> / @*Ancora ou link*@
+<a asp-controller="Paciente" asp-action="Listar">Pacientes</a> / @*Ancora ou link*@
 <hr />
 
-<h1>Exclusão de Funcionario</h1>
+<h1>Exclusão de Funcionário</h1>
 
-<form action="/Funcionario/Excluir/@Model.Id" method="post">
+<form asp-action="Excluir" asp-route-id="@Model.Id" method="post">
 
-    <p>
-        Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível
-    </p>
+    <p>Você realmente deseja excluir o registro abaixo?</p>
+
+    <div>
+        <label asp-for="Nome"></label>
+        <br />
+        <input asp-for="Nome" type="text" readonly>
+    </div>
 
     <button type="submit">Confirmar Exclusão</button>
 </form>
 
 <p>
-    <a href="/Fornecedor/Listar">Voltar para a lista</a>
+    <a asp-action="Listar">Voltar para a lista</a>
+
 </p>
