@@ -1,16 +1,9 @@
 @model List<Medicamento>;
 
-<h2>Controle de Medicamentos</h2>
-
-<hr />
-<a href="/">Início</a> / @*Ancora ou link*@
-<a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
-<a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
-<a href="/Funcionario/Listar">Funcionários</a> / @*Ancora ou link*@
-<a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
-<hr />
-
-<h1>Listagem de Medicamentos</h1>
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Medicamentos";
+}
 
 <p>
     <a href="Cadastrar">Cadastrar Medicamento</a>

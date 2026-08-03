@@ -1,16 +1,9 @@
 @model EditarFuncionarioViewModel
 
-<h2>Controle de Medicamentos</h2>
-
-<hr />
-<a asp-controller="Home" asp-action="Index">Início</a> / @*Ancora ou link*@
-<a asp-controller="Fornecedor" asp-action="Listar">Fornecedores</a> / @*Ancora ou link*@
-<a asp-controller="Medicamento" asp-action="Listar">Medicamentos</a> / @*Ancora ou link*@
-<a asp-controller="Funcionario" asp-action="Listar">Funcionários</a> / @*Ancora ou link*@
-<a asp-controller="Paciente" asp-action="Listar">Pacientes</a> / @*Ancora ou link*@
-<hr />
-
-<h1>Edição de Funcionário</h1>
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Edição de Funcionário";
+}
 
 <form asp-action="Editar" asp-route-id="@Model.Id" method="post">
 

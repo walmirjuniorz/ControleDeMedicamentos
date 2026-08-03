@@ -1,15 +1,4 @@
-@* Titulo ou Cabecalho *@
-@* HTML - HyperText Markup Language *@
-@* CSHTML - CSharp + HyperText Markup Language *@
-
-<h2>Controle de Medicamentos</h2>
-
-<hr />
-<a href="/">Início</a> / @*Ancora ou link*@
-<a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
-<a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
-<a href="/Funcionario/Listar">Funcionários</a> / @*Ancora ou link*@
-<a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
-<hr />
-
-<h1>Página Inicial</h1>
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Página Inicial";
+}
