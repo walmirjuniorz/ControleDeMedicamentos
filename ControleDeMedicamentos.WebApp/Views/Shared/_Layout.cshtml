@@ -1,17 +1,33 @@
-<h2>Controle de Medicamentos</h2>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<hr />
-<a href="/">Início</a> / @*Ancora ou link*@
-<a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
-<a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
-<a href="/Funcionario/Listar">Funcionários</a> / @*Ancora ou link*@
-<a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
-<hr />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<header>
-    <h1>@ViewBag.Titulo</h1>
-</header>
+    <title>@ViewBag.Titulo | Controle de Medicamentos</title>
+</head>
 
-<main>
-    @RenderBody()
-</main>
+<body>
+
+    <h2>Controle de Medicamentos</h2>
+
+    <hr />
+    <a href="/">Início</a> / @*Ancora ou link*@
+    <a href="/Fornecedor/Listar">Fornecedores</a> / @*Ancora ou link*@
+    <a href="/Medicamento/Listar">Medicamentos</a> / @*Ancora ou link*@
+    <a href="/Funcionario/Listar">Funcionários</a> / @*Ancora ou link*@
+    <a href="/Paciente/Listar">Pacientes</a> / @*Ancora ou link*@
+    <hr />
+
+    <header>
+        <h1>@ViewBag.Titulo</h1>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+</body>
+
+</html>
+
