@@ -15,5 +15,7 @@ WebApplication app = builder.Build();
 app.UseRouting();
 app.MapDefaultControllerRoute();
 
+app.UseStaticFiles();
+
 // Executa o servidor
 app.Run();
