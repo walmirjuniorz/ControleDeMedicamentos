@@ -4,16 +4,15 @@
     Layout = "_Layout";
     ViewBag.Titulo = "Exclusão de Fornecedor";
 }
+<div class="row justify-content-start">
+    <form class="col-6" action="/Fornecedor/Excluir/@Model.Id" method="post">
+        <div class="alert alert-danger" role="alert">
+            Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível
+        </div>
 
-<form action="/Fornecedor/Excluir/@Model.Id" method="post">
-
-    <p>
-        Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível
-    </p>
-
-    <button type="submit">Confirmar Exclusão</button>
-</form>
-
-<p>
-    <a href="/Fornecedor/Listar">Voltar para a lista</a>
-</p>
+        <div class="d-flex gap-3 mt-4">
+            <button class="btn btn-danger" type="submit">Confirmar Exclusão</button>
+            <a class="btn btn-outline-secondary" href="/Fornecedor/Listar">Voltar para a lista</a>
+        </div>
+    </form>
+</div>

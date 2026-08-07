@@ -6,34 +6,42 @@
 }
 
 <p>
-    <a href="Cadastrar">Cadastrar Fornecedor</a>
+    <a class="btn btn-primary" href="Cadastrar">Cadastrar Fornecedor</a>
 </p>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>CNPJ</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (Fornecedor f in Model)
-        {
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        Náo há nenhum fornecedor registrado.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td>@f.Id</td>
-                <td>@f.Nome</td>
-                <td>@f.Telefone</td>
-                <td>@f.Cnpj</td>
-                <td>
-                    <a href="Editar/@f.Id">Editar</a>
-                    <span> | </span>
-                    <a href="Excluir/@f.Id">Excluir</a>
-                </td>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>CNPJ</th>
+                <th>Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (Fornecedor f in Model)
+            {
+                <tr>
+                    <td>@f.Id</td>
+                    <td>@f.Nome</td>
+                    <td>@f.Telefone</td>
+                    <td>@f.Cnpj</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="Editar/@f.Id">Editar</a>
+                        <a class="btn btn-outline-danger" href="Excluir/@f.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
