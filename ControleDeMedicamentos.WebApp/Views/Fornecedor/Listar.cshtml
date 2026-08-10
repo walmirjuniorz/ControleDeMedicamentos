@@ -17,31 +17,48 @@
 }
 else
 {
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>CNPJ</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
 
-        <tbody>
-            @foreach (Fornecedor f in Model)
-            {
-                <tr>
-                    <td>@f.Id</td>
-                    <td>@f.Nome</td>
-                    <td>@f.Telefone</td>
-                    <td>@f.Cnpj</td>
-                    <td>
-                        <a class="btn btn-outline-primary" href="Editar/@f.Id">Editar</a>
-                        <a class="btn btn-outline-danger" href="Excluir/@f.Id">Excluir</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        @foreach (Fornecedor f in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>@f.Nome</h5>
+                            <span class="badge text-bg-secondary">@f.Id</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+    @* <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>CNPJ</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                        <tr>
+                            <td>@f.Id</td>
+                            <td>@f.Nome</td>
+                            <td>@f.Telefone</td>
+                            <td>@f.Cnpj</td>
+                            <td>
+                                <a class="btn btn-outline-primary" href="Editar/@f.Id">Editar</a>
+                                <a class="btn btn-outline-danger" href="Excluir/@f.Id">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table> *@
 }
