@@ -6,7 +6,10 @@
 }
 
 <p>
-    <a class="btn btn-primary" href="Cadastrar">Cadastrar Fornecedor</a>
+    <a class="btn btn-primary" href="Cadastrar">
+        <i class="bi bi-patch-plus"></i>
+        Cadastrar Fornecedor
+    </a>
 </p>
 
 @if (Model.Count == 0)
@@ -37,18 +40,20 @@ else
                         </dl>
 
                         <div class="d-flex gap-1 justify-content-end mt-auto">
-                            <a class="btn btn-outline-primary" href="Editar/@f.Id">Editar</a>
-                            <a class="btn btn-outline-danger" href="Excluir/@f.Id">Excluir</a>
+                            <a class="btn btn-outline-primary" title="Editar" href="Editar/@f.Id"><i class="bi bi-pencil"></i>
+                                Editar</a>
+                                <a class="btn btn-outline-danger" title="Excluir" href="Excluir/@f.Id"><i class="bi bi-trash3"></i>
+                                    Excluir</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                }
             </div>
 
-        }
-    </div>
 
-
-    @* <table class="table table-striped table-hover">
+            @* <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -73,4 +78,4 @@ else
                     }
                 </tbody>
             </table> *@
-}
+        }
