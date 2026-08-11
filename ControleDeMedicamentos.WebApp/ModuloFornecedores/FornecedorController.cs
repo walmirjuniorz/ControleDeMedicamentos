@@ -35,9 +35,9 @@ public sealed class FornecedorController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Cadastrar(CadastrarFornecedorViewModel cadastroVM)
+    public ActionResult Cadastrar(CadastrarFornecedorViewModel cadastroVm)
     {
-        Fornecedor fornecedor = new Fornecedor(cadastroVM.Nome, cadastroVM.Telefone, cadastroVM.Cnpj);
+        Fornecedor fornecedor = new Fornecedor(cadastroVm.Nome, cadastroVm.Telefone, cadastroVm.Cnpj);
 
         repositorio.Cadastrar(fornecedor);
 
@@ -61,11 +61,11 @@ public sealed class FornecedorController : Controller
         return View(viewModel);
     }
     [HttpPost]
-    public ActionResult Editar(EditarFornecedorViewModel editarVM)
+    public ActionResult Editar(EditarFornecedorViewModel editarVm)
     {
-        Fornecedor fornecedorAtualizado = new Fornecedor(editarVM.Nome, editarVM.Telefone, editarVM.Cnpj);
+        Fornecedor fornecedorAtualizado = new Fornecedor(editarVm.Nome, editarVm.Telefone, editarVm.Cnpj);
 
-        bool conseguiuEditar = repositorio.Editar(editarVM.Id, fornecedorAtualizado);
+        bool conseguiuEditar = repositorio.Editar(editarVm.Id, fornecedorAtualizado);
 
         if (!conseguiuEditar)
             return NotFound();
@@ -86,9 +86,9 @@ public sealed class FornecedorController : Controller
     }
     [HttpPost]
     [ActionName("Excluir")]
-    public ActionResult ConfirmarExclusao(ExcluirFornecedorViewModel excluirVM)
+    public ActionResult ConfirmarExclusao(ExcluirFornecedorViewModel excluirVm)
     {
-        bool conseguiuExcluir = repositorio.Excluir(excluirVM.Id);
+        bool conseguiuExcluir = repositorio.Excluir(excluirVm.Id);
 
         if (!conseguiuExcluir)
             return NotFound();

@@ -19,7 +19,16 @@ public sealed class PacienteController : Controller
     {
         List<Paciente> pacientes = repositorio.SelecionarTodos();
 
-        return View(pacientes);
+        List<ListarPacienteViewModel> viewModels = new List<ListarPacienteViewModel>();
+
+        foreach (Paciente p in pacientes)
+        {
+            ListarPacienteViewModel vm = new ListarPacienteViewModel(p.Id, p.Nome, p.Telefone);
+
+            viewModels.Add(vm);
+        }
+
+        return View(viewModels);
     }
     [HttpGet]
     public ActionResult Cadastrar()
@@ -27,9 +36,9 @@ public sealed class PacienteController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Cadastrar(string nome, string telefone, string cartaoSus, string cpf)
+    public ActionResult Cadastrar(CadastrarPacienteViewModel cadastroVm)
     {
-        Paciente paciente = new Paciente(nome, telefone, cartaoSus, cpf);
+        Paciente paciente = new Paciente(cadastroVm.Nome, cadastroVm.Telefone, cadastroVm.CartaoSus, cadastroVm.Cpf);
 
         repositorio.Cadastrar(paciente);
 
@@ -38,19 +47,27 @@ public sealed class PacienteController : Controller
     [HttpGet]
     public ActionResult Editar(int id)
     {
-        Paciente? paciente = repositorio.SelecionarPorId(id);
+        Paciente? pacienteSelecionado = repositorio.SelecionarPorId(id);
 
-        if (paciente == null)
+        if (pacienteSelecionado == null)
             return NotFound();
 
-        return View(paciente);
+        EditarPacienteViewModel viewModel = new EditarPacienteViewModel(
+            id,
+            pacienteSelecionado.Nome,
+            pacienteSelecionado.Telefone,
+            pacienteSelecionado.CartaoSus,
+            pacienteSelecionado.Cpf
+        );
+
+        return View(viewModel);
     }
     [HttpPost]
-    public ActionResult Editar(int id, string nome, string telefone, string cartaoSus, string cpf)
+    public ActionResult Editar(EditarPacienteViewModel editarVm)
     {
-        Paciente pacienteAtualizado = new Paciente(nome, telefone, cartaoSus, cpf);
+        Paciente pacienteAtualizado = new Paciente(editarVm.Nome, editarVm.Telefone, editarVm.CartaoSus, editarVm.Cpf);
 
-        bool conseguiuEditar = repositorio.Editar(id, pacienteAtualizado);
+        bool conseguiuEditar = repositorio.Editar(editarVm.Id, pacienteAtualizado);
 
         if (!conseguiuEditar)
             return NotFound();
@@ -60,18 +77,20 @@ public sealed class PacienteController : Controller
     [HttpGet]
     public ActionResult Excluir(int id)
     {
-        Paciente? paciente = repositorio.SelecionarPorId(id);
+        Paciente? pacienteSelecionado = repositorio.SelecionarPorId(id);
 
-        if (paciente == null)
+        if (pacienteSelecionado == null)
             return NotFound();
 
-        return View(paciente);
+        ExcluirPacienteViewModel viewModels = new ExcluirPacienteViewModel(id, pacienteSelecionado.Nome);
+
+        return View(pacienteSelecionado);
     }
     [HttpPost]
     [ActionName("Excluir")]
-    public ActionResult ConfirmarExclusao(int id)
+    public ActionResult ConfirmarExclusao(ExcluirPacienteViewModel excluirVm)
     {
-        bool conseguiuExcluir = repositorio.Excluir(id);
+        bool conseguiuExcluir = repositorio.Excluir(excluirVm.Id);
 
         if (!conseguiuExcluir)
             return NotFound();
