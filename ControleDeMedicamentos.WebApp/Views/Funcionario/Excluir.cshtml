@@ -7,18 +7,18 @@
 
 <form asp-action="Excluir" asp-route-id="@Model.Id" method="post">
 
-    <p>Você realmente deseja excluir o registro abaixo?</p>
+    <p> Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível</p>
 
     <div>
         <label asp-for="Nome"></label>
-        <br />
+
         <input asp-for="Nome" type="text" readonly>
     </div>
+    <br />
 
     <button type="submit">Confirmar Exclusão</button>
 </form>
 
 <p>
     <a asp-action="Listar">Voltar para a lista</a>
-
 </p>

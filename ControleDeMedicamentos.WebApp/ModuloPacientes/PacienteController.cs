@@ -82,9 +82,9 @@ public sealed class PacienteController : Controller
         if (pacienteSelecionado == null)
             return NotFound();
 
-        ExcluirPacienteViewModel viewModels = new ExcluirPacienteViewModel(id, pacienteSelecionado.Nome);
+        ExcluirPacienteViewModel viewModel = new ExcluirPacienteViewModel(id, pacienteSelecionado.Nome);
 
-        return View(pacienteSelecionado);
+        return View(viewModel);
     }
     [HttpPost]
     [ActionName("Excluir")]

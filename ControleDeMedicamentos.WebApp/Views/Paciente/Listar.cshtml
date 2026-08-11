@@ -1,4 +1,4 @@
-@model List<Paciente>;
+@model List<ListarPacienteViewModel>;
 
 @{
     Layout = "_Layout";
@@ -15,25 +15,21 @@
             <th>Id</th>
             <th>Nome</th>
             <th>Telefone</th>
-            <th>Cartão do SUS</th>
-            <th>CPF</th>
             <th>Ações</th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (Paciente m in Model)
+        @foreach (ListarPacienteViewModel p in Model)
         {
             <tr>
-                <td>@m.Id</td>
-                <td>@m.Nome</td>
-                <td>@m.Telefone</td>
-                <td>@m.CartaoSus</td>
-                <td>@m.Cpf</td>
+                <td>@p.Id</td>
+                <td>@p.Nome</td>
+                <td>@p.Telefone</td>
                 <td>
-                    <a href="Editar/@m.Id">Editar</a>
+                    <a href="Editar/@p.Id">Editar</a>
                     <span> | </span>
-                    <a href="Excluir/@m.Id">Excluir</a>
+                    <a href="Excluir/@p.Id">Excluir</a>
                 </td>
             </tr>
         }
