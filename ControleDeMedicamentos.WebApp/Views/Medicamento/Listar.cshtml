@@ -1,4 +1,4 @@
-@model List<Medicamento>;
+@model List<ListarMedicamentoViewModel>;
 
 @{
     Layout = "_Layout";
@@ -22,7 +22,7 @@
     </thead>
 
     <tbody>
-        @foreach (Medicamento m in Model)
+        @foreach (ListarMedicamentoViewModel m in Model)
         {
             <tr>
                 <td>@m.Id</td>
