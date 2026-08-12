@@ -1,4 +1,4 @@
-@model Fornecedor
+@model EditarFornecedorViewModel
 
 @{
     Layout = "_Layout";
@@ -6,26 +6,26 @@
 }
 
 <div class="row justify-content-start">
-    <form class="col-lg-6" action="/Fornecedor/Editar/@Model.Id" method="post">
+    <form class="col-lg-6" asp-action="Editar" asp-route-id="@Model.Id" method="post">
 
         <div>
-            <label class="form-label" for="nome">Nome</label>
-            <input class="form-control" id="nome" name="nome" type="text" value="@Model.Nome">
+            <label class="form-label" asp-for="Nome"></label>
+            <input class="form-control" asp-for="Nome" type="text">
         </div>
 
         <div class="mt-2">
-            <label class="form-label" for="telefone">Telefone</label>
-            <input class="form-control" id="telefone" name="telefone" type="text" value="@Model.Telefone">
+            <label class="form-label" asp-for="Telefone"></label>
+            <input class="form-control" asp-for="Telefone" type="text">
         </div>
 
         <div>
-            <label class="form-label" for="cnpj">CNPJ</label>
-            <input class="form-control" id="cnpj" name="cnpj" type="text" value="@Model.Cnpj">
+            <label class="form-label" asp-for="Cnpj">CNPJ</label>
+            <input class="form-control" asp-for="Cnpj" type="text">
         </div>
 
         <div class="d-flex gap-3 mt-2">
             <button class="btn btn-primary" type="submit">Confirmar Edição</button>
-            <a class="btn btn-outline-secondary" href="/Fornecedor/Listar">Voltar para a lista</a>
+            <a class="btn btn-outline-secondary" asp-action="Listar">Voltar para a lista</a>
         </div>
     </form>
 </div>
