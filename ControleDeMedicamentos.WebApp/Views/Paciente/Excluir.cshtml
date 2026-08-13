@@ -5,20 +5,16 @@
     ViewBag.Titulo = "Exclusão de Paciente";
 }
 
-<form asp-action="Excluir" asp-route-id="@Model.Id" method="post">
+<div class="row justify-content-start">
+    <form class="col-lg-6" asp-action="Excluir" asp-route-id="@Model.Id" method="post">
+        <div class="alert alert-danger" role="alert">
+            Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível
+        </div>
 
-    <p> Você deseja realmente excluir o registro "@Model.Nome"? Esta ação é irreversível</p>
+        <div class="d-flex gap-3 mt-4">
+            <button class="btn btn-danger" type="submit">Confirmar Exclusão</button>
+            <a class="btn btn-outline-secondary" asp-action="Listar">Voltar para a lista</a>
+        </div>
+    </form>
+</div>
 
-    <div>
-        <label asp-for="Nome"></label>
-
-        <input asp-for="Nome" type="text" readonly>
-    </div>
-    <br />
-
-    <button type="submit">Confirmar Exclusão</button>
-</form>
-
-<p>
-    <a asp-action="Listar">Voltar para a lista</a>
-</p>

@@ -5,37 +5,35 @@
     ViewBag.Titulo = "Edição de Paciente";
 }
 
-<form asp-action="Editar" asp-route-id="@Model.Id" method="post">
+<div class="row justify-content-start">
+    <form class="col-lg-6" asp-action="Editar" asp-route-id="@Model.Id" method="post">
 
-    <div>
-        <label asp-for="Nome"></label>
-        <br />
-        <input asp-for="Nome" type="text">
-    </div>
+        <div>
+            <label class="form-label" asp-for="Nome"></label>
+            <input class="form-control" asp-for="Nome" type="text">
+        </div>
 
-    <div>
-        <label asp-for="Telefone"></label>
-        <br />
-        <input asp-for="Telefone" type="text">
-    </div>
+        <div class="mt-2">
+            <label class="form-label" asp-for="Telefone"></label>
+            <input class="form-control" asp-for="Telefone" type="text">
+        </div>
 
-    <div>
-        <label asp-for="CartaoSus">Cartão SUS</label>
-        <br />
-        <input asp-for="CartaoSus" type="text">
-    </div>
+        <div class="mt-2">
+            <label class="form-label" asp-for="CartaoSus">Cartão SUS</label>
+            <input class="form-control" asp-for="CartaoSus" type="text">
+        </div>
 
-    <div>
-        <label asp-for="Cpf">CPF</label>
-        <br />
-        <input asp-for="Cpf" type="text">
-    </div>
+        <div class="mt-2">
+            <label class="form-label" asp-for="Cpf">CPF</label>
+            <input class="form-control" asp-for="Cpf" type="text">
+        </div>
+        <br>
 
-    <br>
-
-    <button type="submit">Confirmar Edição</button>
-</form>
-
-<p>
-    <a asp-action="Listar">Voltar para a lista</a>
-</p>
+        <div class="d-flex gap-3 mt-1">
+            <button class="btn btn-primary" type="submit"><i class="bi bi-check2"></i> Confirmar Edição</button>
+            <a class="btn btn-outline-secondary" asp-action=Listar">
+                <i class="bi bi-arrow-return-left"></i> Voltar para a lista
+            </a>
+        </div>
+    </form>
+</div>
