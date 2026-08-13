@@ -1,11 +1,16 @@
-using ControleDeMedicamentos.WebApp.ModuloFornecedores;
-
 namespace ControleDeMedicamentos.WebApp.ModuloMedicamentos;
 
-public record ListarMedicamentoViewModel(int Id, string Nome, string Descricao, Fornecedor Fornecedor, string QuantidadeEmEstoque);
+public record FornecedorMedicamentoViewModel(int Id, string Nome);
 
-public record CadastrarMedicamentoViewModel(int Id, string Nome, string Descricao, Fornecedor Fornecedor, string QuantidadeEmEstoque);
+public record ListarMedicamentoViewModel(int Id, string Nome, string Descricao, string NomeFornecedor, int QuantidadeEmEstoque);
 
-public record EditarMedicamentoViewModel(int Id, string Nome, string Descricao, Fornecedor Fornecedor, string QuantidadeEmEstoque);
+public record CadastrarMedicamentoViewModel(string Nome, string Descricao, int FornecedorId)
+{
+    public List<FornecedorMedicamentoViewModel> Fornecedores { get; init; } = [];
+}
+public record EditarMedicamentoViewModel(int Id, string Nome, string Descricao, int FornecedorId)
+{
+    public List<FornecedorMedicamentoViewModel> Fornecedores { get; init; } = [];
+}
 
 public record ExcluirMedicamentoViewModel(int Id, string Nome);

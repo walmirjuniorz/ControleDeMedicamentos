@@ -22,26 +22,37 @@ public sealed class MedicamentoController : Controller
     {
         List<Medicamento> medicamentos = repositorioMedicamento.SelecionarTodos();
 
-        return View(medicamentos);
+        List<ListarMedicamentoViewModel> viewModels = [];
+
+        foreach (Medicamento med in medicamentos)
+        {
+            ListarMedicamentoViewModel viewModel = new ListarMedicamentoViewModel(
+                med.Id, med.Nome, med.Descricao, med.Fornecedor.Nome, med.QuantidadeEmEstoque
+            );
+
+            viewModels.Add(viewModel);
+        }
+
+        return View(viewModels);
     }
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarTodos();
+        CadastrarMedicamentoViewModel viewModel = new CadastrarMedicamentoViewModel(string.Empty, string.Empty, 0)
+        with
+        { Fornecedores = ObterFornecedores() };
 
-        ViewBag.Fornecedores = fornecedores;
-
-        return View(fornecedores);
+        return View(viewModel);
     }
     [HttpPost]
-    public ActionResult Cadastrar(string nome, string descricao, int fornecedorId)
+    public ActionResult Cadastrar(CadastrarMedicamentoViewModel cadastrarVm)
     {
-        Fornecedor? fornecedor = repositorioFornecedor.SelecionarPorId(fornecedorId);
+        Fornecedor? fornecedor = repositorioFornecedor.SelecionarPorId(cadastrarVm.FornecedorId);
 
         if (fornecedor == null)
             return NotFound();
 
-        Medicamento medicamento = new Medicamento(nome, descricao, fornecedor);
+        Medicamento medicamento = new Medicamento(cadastrarVm.Nome, cadastrarVm.Descricao, fornecedor);
 
         repositorioMedicamento.Cadastrar(medicamento);
 
@@ -55,23 +66,28 @@ public sealed class MedicamentoController : Controller
         if (medicamento == null)
             return NotFound();
 
-        List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarTodos();
+        EditarMedicamentoViewModel viewModel = new EditarMedicamentoViewModel(
+            id,
+            medicamento.Nome,
+            medicamento.Descricao,
+            medicamento.Fornecedor.Id
+        )
+        with
+        { Fornecedores = ObterFornecedores() };
 
-        ViewBag.Fornecedores = fornecedores;
-
-        return View(medicamento);
+        return View(viewModel);
     }
     [HttpPost]
-    public ActionResult Editar(int id, string nome, string descricao, int fornecedorId)
+    public ActionResult Editar(EditarMedicamentoViewModel editarVm)
     {
-        Fornecedor? fornecedor = repositorioFornecedor.SelecionarPorId(fornecedorId);
+        Fornecedor? fornecedor = repositorioFornecedor.SelecionarPorId(editarVm.FornecedorId);
 
         if (fornecedor == null)
             return NotFound();
 
-        Medicamento mediacamentoAtualizado = new Medicamento(nome, descricao, fornecedor);
+        Medicamento mediacamentoAtualizado = new Medicamento(editarVm.Nome, editarVm.Descricao, fornecedor);
 
-        bool conseguiuEditar = repositorioMedicamento.Editar(id, mediacamentoAtualizado);
+        bool conseguiuEditar = repositorioMedicamento.Editar(editarVm.Id, mediacamentoAtualizado);
 
         if (!conseguiuEditar)
             return NotFound();
@@ -86,17 +102,33 @@ public sealed class MedicamentoController : Controller
         if (medicamento == null)
             return NotFound();
 
-        return View(medicamento);
+        ExcluirMedicamentoViewModel viewModel = new ExcluirMedicamentoViewModel(id, medicamento.Nome);
+
+        return View(viewModel);
     }
     [HttpPost]
     [ActionName("Excluir")]
-    public ActionResult ConfirmarExcluisao(int id)
+    public ActionResult ConfirmarExcluisao(ExcluirMedicamentoViewModel excluirVm)
     {
-        bool conseguiuExcluir = repositorioMedicamento.Excluir(id);
+        bool conseguiuExcluir = repositorioMedicamento.Excluir(excluirVm.Id);
 
         if (!conseguiuExcluir)
             return NotFound();
 
         return RedirectToAction(nameof(Listar));
+    }
+    private List<FornecedorMedicamentoViewModel> ObterFornecedores()
+    {
+        List<Fornecedor> fornecedores = repositorioFornecedor.SelecionarTodos();
+
+        List<FornecedorMedicamentoViewModel> fornecedoresVms = [];
+
+        foreach (Fornecedor f in fornecedores)
+        {
+            FornecedorMedicamentoViewModel fornecedorVm = new FornecedorMedicamentoViewModel(f.Id, f.Nome);
+
+            fornecedoresVms.Add(fornecedorVm);
+        }
+        return fornecedoresVms;
     }
 }
