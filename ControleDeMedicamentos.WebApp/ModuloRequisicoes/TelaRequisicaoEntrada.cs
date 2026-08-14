@@ -1,4 +1,5 @@
 using ControleDeMedicamentos.WebApp.Compartilhado;
+using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 using ControleDeMedicamentos.WebApp.ModuloMedicamentos;
 
 namespace ControleDeMedicamentos.WebApp.ModuloRequisicoes;
@@ -6,13 +7,16 @@ namespace ControleDeMedicamentos.WebApp.ModuloRequisicoes;
 public class TelaRequisicaoEntrada : TelaBase<RequisicaoEntrada>, ITelaOpcoes, ITelaCrud
 {
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
+    private readonly RepositorioFuncionarioEmArquivo repositorioFuncionario;
 
     public TelaRequisicaoEntrada(
         RepositorioRequisicaoEntradaEmArquivo repositorioRequisicao,
-        RepositorioMedicamentoEmArquivo repositorioMedicamento
+        RepositorioMedicamentoEmArquivo repositorioMedicamento,
+        RepositorioFuncionarioEmArquivo repositorioFuncionario
     ) : base("Requisição de Entrada", repositorioRequisicao)
     {
         this.repositorioMedicamento = repositorioMedicamento;
+        this.repositorioFuncionario = repositorioFuncionario;
     }
 
     public override void VisualizarTodos(bool deveExibirCabecalho)
@@ -59,10 +63,19 @@ public class TelaRequisicaoEntrada : TelaBase<RequisicaoEntrada>, ITelaOpcoes, I
 
         Medicamento medicamento = repositorioMedicamento.SelecionarPorId(idMedicamento)!;
 
+        VisualizarFuncionarios();
+
+        Console.WriteLine("---------------------------------");
+
+        Console.Write("Digite o ID do funcionario responsavel pela entrada: ");
+        int idFuncionario = Convert.ToInt32(Console.ReadLine());
+
+        Funcionario funcionario = repositorioFuncionario.SelecionarPorId(idFuncionario)!;
+
         Console.Write("Digite a quantidade que deseja requisitar: ");
         int quantidade = Convert.ToInt32(Console.ReadLine());
 
-        return new RequisicaoEntrada(medicamento, quantidade);
+        return new RequisicaoEntrada(medicamento, quantidade, funcionario);
     }
 
     private void VisualizarMedicamentos()
@@ -79,6 +92,24 @@ public class TelaRequisicaoEntrada : TelaBase<RequisicaoEntrada>, ITelaOpcoes, I
             Console.WriteLine(
                 "{0, -7} | {1, -20} | {2, -20} | {3, -20}",
                 m.Id, m.Nome, m.Fornecedor.Nome, m.Descricao
+            );
+        }
+    }
+
+    private void VisualizarFuncionarios()
+    {
+        Console.WriteLine(
+            "{0, -7} | {1, -30} | {2, -15}",
+            "Id", "Nome", "CPF"
+        );
+
+        List<Funcionario> registros = repositorioFuncionario.SelecionarTodos();
+
+        foreach (Funcionario funcionario in registros)
+        {
+            Console.WriteLine(
+                "{0, -7} | {1, -30} | {2, -15}",
+                funcionario.Id, funcionario.Nome, funcionario.Cpf
             );
         }
     }

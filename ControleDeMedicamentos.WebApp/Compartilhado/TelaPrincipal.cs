@@ -34,7 +34,7 @@ public class TelaPrincipal
         telaPaciente = new TelaPaciente(repositorioPaciente);
         telaFuncionario = new TelaFuncionario(repositorioFuncionarioEmArquivo);
 
-        telaRequisicaoEntrada = new TelaRequisicaoEntrada(repositorioRequisicaoEntrada, repositorioMedicamento);
+        telaRequisicaoEntrada = new TelaRequisicaoEntrada(repositorioRequisicaoEntrada, repositorioMedicamento, repositorioFuncionarioEmArquivo);
         telaRequisicaoSaida = new TelaRequisicaoSaida(repositorioRequisicaoSaida, repositorioPaciente, repositorioMedicamento);
     }
 
