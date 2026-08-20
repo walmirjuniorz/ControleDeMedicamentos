@@ -13,7 +13,7 @@ public record ListarRequisicaoEntradaViewModel(
     int Quantidade,
     DateTime Data);
 
-public record CadastrarRequisicaoViewModel(int MedicamentoId, int FuncionarioId, int Quantidade)
+public record CadastrarRequisicaoEntradaViewModel(int MedicamentoId, int FuncionarioId, int Quantidade)
 {
     public List<MedicamentoRequisicaoEntradaViewModel> Medicamentos { get; init; } = [];
     public List<FuncionarioRequisicaoEntradaViewModel> Funcionarios { get; init; } = [];

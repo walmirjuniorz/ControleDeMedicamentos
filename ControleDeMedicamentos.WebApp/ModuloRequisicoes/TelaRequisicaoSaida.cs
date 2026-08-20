@@ -38,9 +38,20 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
 
         foreach (RequisicaoSaida r in registros)
         {
+            List<string> nomesMedicamentos = new List<string>();
+            int quantidadeTotal = 0;
+
+            foreach (MedicamentoPrescrito medicamentoPrescrito in r.MedicamentosPrescritos)
+            {
+                nomesMedicamentos.Add(medicamentoPrescrito.Medicamento.Nome);
+                quantidadeTotal += medicamentoPrescrito.Quantidade;
+            }
+
+            string medicamentos = string.Join(", ", nomesMedicamentos);
+
             Console.WriteLine(
             "{0, -7} | {1, -20} | {2, -20} | {3, -10} |{4, -15}",
-                r.Id, r.Paciente.Nome, r.Medicamento.Nome, r.Quantidade, r.Data.ToShortDateString()
+                r.Id, r.Paciente.Nome, medicamentos, quantidadeTotal, r.Data.ToShortDateString()
             );
         }
 
@@ -74,7 +85,12 @@ public class TelaRequisicaoSaida : TelaBase<RequisicaoSaida>, ITelaOpcoes, ITela
         Console.Write("Digite a quantidade que deseja levar: ");
         int quantidade = Convert.ToInt32(Console.ReadLine());
 
-        return new RequisicaoSaida(paciente, medicamento, quantidade);
+        MedicamentoPrescrito medicamentoPrescrito = new MedicamentoPrescrito(medicamento, quantidade);
+        List<MedicamentoPrescrito> medicamentosPrescritos = new List<MedicamentoPrescrito>();
+
+        medicamentosPrescritos.Add(medicamentoPrescrito);
+
+        return new RequisicaoSaida(paciente, medicamentosPrescritos);
     }
     private void VisualizarPacientes()
     {

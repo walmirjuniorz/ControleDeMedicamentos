@@ -44,7 +44,7 @@ public class RequisicaoEntradaController : Controller
     [HttpGet]
     public ActionResult Cadastrar()
     {
-        CadastrarRequisicaoViewModel viewModel = new CadastrarRequisicaoViewModel(0, 0, 0)
+        CadastrarRequisicaoEntradaViewModel viewModel = new CadastrarRequisicaoEntradaViewModel(0, 0, 0)
         with
         {
             Medicamentos = ObterMedicamentos(),
@@ -55,7 +55,7 @@ public class RequisicaoEntradaController : Controller
     }
 
     [HttpPost]
-    public ActionResult Cadastrar(CadastrarRequisicaoViewModel cadastrarVm)
+    public ActionResult Cadastrar(CadastrarRequisicaoEntradaViewModel cadastrarVm)
     {
         Medicamento? medicamento = repositorioMedicamento.SelecionarPorId(cadastrarVm.MedicamentoId);
         Funcionario? funcionario = repositorioFuncionario.SelecionarPorId(cadastrarVm.FuncionarioId);

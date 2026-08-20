@@ -8,6 +8,7 @@ public class Medicamento : EntidadeBase
 {
     public string Nome { get; set; } = string.Empty;
     public string Descricao { get; set; } = string.Empty;
+    public string Quantidade { get; set; } = string.Empty;
     public Fornecedor Fornecedor { get; set; } = null!;
     public List<RequisicaoEntrada> Requisicoes { get; set; } = [];
     public List<RequisicaoSaida> RequisicoesSaida { get; set; } = [];
@@ -31,7 +32,7 @@ public class Medicamento : EntidadeBase
                 total += req.Quantidade;
 
             foreach (RequisicaoSaida req in RequisicoesSaida)
-                total -= req.Quantidade;
+                total -= req.ObterQuantidade(this);
 
             return total;
         }
