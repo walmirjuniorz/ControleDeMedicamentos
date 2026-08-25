@@ -19,7 +19,6 @@ public class ContextoJson
     public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = [];
     public List<RequisicaoSaida> RequisicoesSaida { get; set; } = [];
 
-
     public ContextoJson()
     {
         string caminhoAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -29,15 +28,6 @@ public class ContextoJson
         Directory.CreateDirectory(caminhoDiretorioAplicativo);
 
         caminhoArquivoDados = Path.Join(caminhoDiretorioAplicativo, "dados.json");
-    }
-
-    public static ContextoJson InjetarContexto(IServiceProvider serviceProvider)
-    {
-        ContextoJson contexto = new ContextoJson();
-
-        contexto.Carregar();
-
-        return contexto;
     }
 
     public void Salvar()
@@ -50,7 +40,6 @@ public class ContextoJson
 
         File.WriteAllText(caminhoArquivoDados, jsonString);
     }
-
     public void Carregar()
     {
         if (!File.Exists(caminhoArquivoDados))

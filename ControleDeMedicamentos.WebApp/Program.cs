@@ -17,9 +17,19 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddSingleton();
 
 // Adiciona e injeta uma instancia por requisição/conexão.
+
+// Delegates
 // Func<IServiceProvider, ContextoJson> implementationFactory
 
-builder.Services.AddScoped<ContextoJson>(ContextoJson.InjetarContexto);
+// Expressão Lambda =>
+builder.Services.AddScoped(_ =>
+    {
+        ContextoJson contexto = new ContextoJson();
+
+        contexto.Carregar();
+
+        return contexto;
+    });
 builder.Services.AddScoped<RepositorioMedicamentoEmArquivo>();
 builder.Services.AddScoped<RepositorioFornecedorEmArquivo>();
 builder.Services.AddScoped<RepositorioFuncionarioEmArquivo>();
