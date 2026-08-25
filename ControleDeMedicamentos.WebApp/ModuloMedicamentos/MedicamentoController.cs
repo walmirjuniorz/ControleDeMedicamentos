@@ -8,14 +8,10 @@ public sealed class MedicamentoController : Controller
 {
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
     private readonly RepositorioFornecedorEmArquivo repositorioFornecedor;
-    public MedicamentoController()
+    public MedicamentoController(RepositorioMedicamentoEmArquivo repositorioMedicamento, RepositorioFornecedorEmArquivo repositorioFornecedor)
     {
-        ContextoJson contexto = new ContextoJson();
-
-        contexto.Carregar();
-
-        repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contexto);
-        repositorioFornecedor = new RepositorioFornecedorEmArquivo(contexto);
+        this.repositorioMedicamento = repositorioMedicamento;
+        this.repositorioFornecedor = repositorioFornecedor;
     }
     [HttpGet]
     public ActionResult Listar()

@@ -7,14 +7,12 @@ namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;
 public sealed class FuncionarioController : Controller
 {
     private readonly RepositorioFuncionarioEmArquivo repositorio;
-    public FuncionarioController()
+
+    public FuncionarioController(RepositorioFuncionarioEmArquivo repositorio)
     {
-        ContextoJson contextoJson = new ContextoJson();
-
-        contextoJson.Carregar();
-
-        repositorio = new RepositorioFuncionarioEmArquivo(contextoJson);
+        this.repositorio = repositorio;
     }
+
     [HttpGet]
     public ActionResult Listar()
     {

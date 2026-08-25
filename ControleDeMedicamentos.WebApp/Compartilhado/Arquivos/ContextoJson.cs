@@ -31,6 +31,15 @@ public class ContextoJson
         caminhoArquivoDados = Path.Join(caminhoDiretorioAplicativo, "dados.json");
     }
 
+    public static ContextoJson InjetarContexto(IServiceProvider serviceProvider)
+    {
+        ContextoJson contexto = new ContextoJson();
+
+        contexto.Carregar();
+
+        return contexto;
+    }
+
     public void Salvar()
     {
         JsonSerializerOptions options = new JsonSerializerOptions();

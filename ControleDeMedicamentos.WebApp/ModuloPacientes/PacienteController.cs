@@ -6,14 +6,12 @@ namespace ControleDeMedicamentos.WebApp.ModuloPacientes;
 public sealed class PacienteController : Controller
 {
     private readonly RepositorioPacienteEmArquivo repositorio;
-    public PacienteController()
+
+    public PacienteController(RepositorioPacienteEmArquivo repositorio)
     {
-        ContextoJson contextoJson = new ContextoJson();
-
-        contextoJson.Carregar();
-
-        repositorio = new RepositorioPacienteEmArquivo(contextoJson);
+        this.repositorio = repositorio;
     }
+
     [HttpGet]
     public ActionResult Listar()
     {

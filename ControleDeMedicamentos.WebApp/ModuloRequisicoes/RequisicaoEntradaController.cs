@@ -11,16 +11,16 @@ public class RequisicaoEntradaController : Controller
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
     private readonly RepositorioFuncionarioEmArquivo repositorioFuncionario;
 
-    public RequisicaoEntradaController()
+    public RequisicaoEntradaController(
+        RepositorioRequisicaoEntradaEmArquivo repositorio,
+        RepositorioMedicamentoEmArquivo repositorioMedicamento,
+        RepositorioFuncionarioEmArquivo repositorioFuncionario)
     {
-        ContextoJson contextoJson = new ContextoJson();
-
-        contextoJson.Carregar();
-
-        repositorio = new RepositorioRequisicaoEntradaEmArquivo(contextoJson);
-        repositorioMedicamento = new RepositorioMedicamentoEmArquivo(contextoJson);
-        repositorioFuncionario = new RepositorioFuncionarioEmArquivo(contextoJson);
+        this.repositorio = repositorio;
+        this.repositorioMedicamento = repositorioMedicamento;
+        this.repositorioFuncionario = repositorioFuncionario;
     }
+
     [HttpGet]
     public ActionResult Listar()
     {
@@ -28,6 +28,9 @@ public class RequisicaoEntradaController : Controller
 
         foreach (RequisicaoEntrada requisicao in repositorio.SelecionarTodos())
         {
+            if (requisicao.Medicamento is null || requisicao.Funcionario is null)
+                continue;
+
             ListarRequisicaoEntradaViewModel viewModel = new ListarRequisicaoEntradaViewModel(
                 requisicao.Id,
                 requisicao.Medicamento.Nome,
