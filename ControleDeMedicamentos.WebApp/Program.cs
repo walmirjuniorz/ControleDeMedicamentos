@@ -3,14 +3,6 @@
 // ... e espera por requisicoes externas...
 // ... geralmente responde com arquivos HTML / CSS / JS (Paginas WEB)
 
-// Objeto de configuraçao do servidor
-using ControleDeMedicamentos.WebApp.Compartilhado.Arquivos;
-using ControleDeMedicamentos.WebApp.ModuloFornecedores;
-using ControleDeMedicamentos.WebApp.ModuloFuncionarios;
-using ControleDeMedicamentos.WebApp.ModuloMedicamentos;
-using ControleDeMedicamentos.WebApp.ModuloPacientes;
-using ControleDeMedicamentos.WebApp.ModuloRequisicoes;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Adiciona e injeta apenas UMA instancia requisitada.
@@ -22,20 +14,10 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Func<IServiceProvider, ContextoJson> implementationFactory
 
 // Expressão Lambda =>
-builder.Services.AddScoped(_ =>
-    {
-        ContextoJson contexto = new ContextoJson();
 
-        contexto.Carregar();
+// Habilita o armazenamento em JSON
 
-        return contexto;
-    });
-builder.Services.AddScoped<RepositorioMedicamentoEmArquivo>();
-builder.Services.AddScoped<RepositorioFornecedorEmArquivo>();
-builder.Services.AddScoped<RepositorioFuncionarioEmArquivo>();
-builder.Services.AddScoped<RepositorioPacienteEmArquivo>();
-builder.Services.AddScoped<RepositorioRequisicaoEntradaEmArquivo>();
-builder.Services.AddScoped<RepositorioRequisicaoSaidaEmArquivo>();
+builder.Services.AddInfraestruturaEmJson();
 
 // Adiciona e injeta uma instancia por ocorrencia da dependencia.
 // builder.Services.AddTransient();
