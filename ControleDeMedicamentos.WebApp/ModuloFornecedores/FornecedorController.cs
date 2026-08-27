@@ -33,9 +33,15 @@ public sealed class FornecedorController : Controller
         return View();
     }
     [HttpPost]
-    public ActionResult Cadastrar(CadastrarFornecedorViewModel cadastroVm)
+    public ActionResult Cadastrar(CadastrarFornecedorViewModel cadastrarVm)
     {
-        Fornecedor fornecedor = new Fornecedor(cadastroVm.Nome, cadastroVm.Telefone, cadastroVm.Cnpj);
+        Fornecedor fornecedor = new Fornecedor(
+            cadastrarVm.Nome ?? string.Empty,
+            cadastrarVm.Telefone ?? string.Empty,
+            cadastrarVm.Cnpj ?? string.Empty);
+
+        if (!ModelState.IsValid)
+            return View(cadastrarVm);
 
         repositorio.Cadastrar(fornecedor);
 
@@ -62,6 +68,9 @@ public sealed class FornecedorController : Controller
     public ActionResult Editar(EditarFornecedorViewModel editarVm)
     {
         Fornecedor fornecedorAtualizado = new Fornecedor(editarVm.Nome, editarVm.Telefone, editarVm.Cnpj);
+
+        if (!ModelState.IsValid)
+            return View(editarVm);
 
         bool conseguiuEditar = repositorio.Editar(editarVm.Id, fornecedorAtualizado);
 
