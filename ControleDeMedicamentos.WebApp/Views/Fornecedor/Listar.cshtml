@@ -1,0 +1,54 @@
+@model List<ListarFornecedorViewModel>
+
+@{
+    Layout = "_Layout";
+    ViewBag.Titulo = "Listagem de Fornecedores";
+}
+
+<p>
+    <a class="btn btn-primary" href="Cadastrar">
+        <i class="bi bi-patch-plus"></i>
+        Cadastrar Fornecedor
+    </a>
+</p>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        Náo há nenhum fornecedor registrado.
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3 mt-3">
+
+        @foreach (ListarFornecedorViewModel f in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5>@f.Nome</h5>
+                            <span class="badge text-bg-secondary">@f.Id</span>
+                        </div>
+
+                        <dl class="row mb-2">
+                            <dt class="col-sm-4">Telefone</dt>
+                            <dd class="col-sm-8">@f.Telefone</dd>
+                            <dt class="col-sm-4">CNPJ</dt>
+                            <dd class=" col-sm-8">@f.Cnpj</dd>
+                        </dl>
+
+                        <div class="d-flex gap-1 justify-content-end mt-auto">
+                            <a class="btn btn-outline-primary" title="Editar" href="Editar/@f.Id"><i class="bi bi-pencil"></i>
+                                Editar</a>
+                                <a class="btn btn-outline-danger" title="Excluir" href="Excluir/@f.Id"><i class="bi bi-trash3"></i>
+                                    Excluir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        }

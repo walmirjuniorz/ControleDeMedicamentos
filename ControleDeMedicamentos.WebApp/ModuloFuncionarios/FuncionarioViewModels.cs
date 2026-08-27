@@ -1,0 +1,11 @@
+namespace ControleDeMedicamentos.WebApp.ModuloFuncionarios;
+
+public record ListarFuncionarioViewModel(int Id, string Nome, string Telefone);
+
+public record CadastrarFuncionarioViewModel(int Id, string Nome, string Telefone, string Cpf);
+
+public record EditarFuncionarioViewModel(int Id, string Nome, string Telefone, string Cpf);
+
+public record ExcluirFuncionarioViewModel(int Id, string Nome);
+
+
